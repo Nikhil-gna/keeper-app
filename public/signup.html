@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.104.2" />
+    <title>Signin Template · Bootstrap v5.2</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/sign-in/"
+    />
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: solid rgba(0, 0, 0, 0.15);
+        border-width: 1px 0;
+        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -0.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet" />
+  </head>
+  <body class="text-center">
+    <main class="form-signin w-100 m-auto">
+      <form>
+        <img
+          class="mb-4"
+          src="../assets/brand/Google-Keep-Notes.webp"
+          alt=""
+          width="72"
+          height="57"
+          style="height: 72px"
+        />
+        <h1 class="h3 mb-3 fw-normal">keeper app</h1>
+
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="username"
+          />
+          <label for="floatingPassword">UserName</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="name@example.com"
+          />
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" /> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" id="signup" type="submit">
+          Sign up
+        </button>
+        <br />
+        <br />
+        <button
+          class="google-btn form-control btn btn-primary submit px-3"
+          id="googleId"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+            alt="Google logo"
+            width="20"
+            height="20"
+          />
+          Sign in with Google
+        </button>
+
+        <!-- <button class="form-control btn btn-primary submit px-3">singin with google</button> -->
+        <!-- <button style="background: url('../assets/images/google-logo.png') no-repeat;  border: none;" class="form-control btn btn-primary submit px-3">signin with Google</button> -->
+        <style>
+          .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: pointer;
+          }
+
+          .google-btn img {
+            margin-right: 10px;
+          }
+        </style>
+      </form>
+    </main>
+  </body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+    import {
+      getDatabase,
+      set,
+      ref,
+    } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+    } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithRedirect,
+      getRedirectResult,
+    } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDzmzhnUd83S2kV1vbnham-1s-7E1e249A",
+      authDomain: "keeper-app-fa6d4.firebaseapp.com",
+      databaseURL: "https://keeper-app-fa6d4-default-rtdb.firebaseio.com",
+      projectId: "keeper-app-fa6d4",
+      storageBucket: "keeper-app-fa6d4.appspot.com",
+      messagingSenderId: "769417999643",
+      appId: "1:769417999643:web:06ed08f1812ee5e9abcfbe",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const provider = new GoogleAuthProvider(app);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
+
+    googleId.addEventListener("click", (e) => {
+      e.preventDefault();
+      signInWithRedirect(auth, provider);
+      
+      getRedirectResult(auth)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access Google APIs.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+
+          // The signed-in user info.
+          const user = result.user;
+          // IdP data available using getAdditionalUserInfo(result)
+          // ...
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+        });
+    });
+
+    signup.addEventListener("click", (e) => {
+      e.preventDefault();
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var username = document.getElementById("username").value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+
+          set(ref(database, "users/" + user.uid), {
+            email: email,
+            username: username,
+          });
+          alert("user created");
+        })
+
+        // ...
+
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage);
+          // console.log(errorMessage);
+          // ..
+        });
+    });
+  </script>
+</html>
