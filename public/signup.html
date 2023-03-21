@@ -9,7 +9,7 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Hugo 0.104.2" />
-    <title>Signin Template · Bootstrap v5.2</title>
+    <title>keeper app Signin</title>
 
     <link
       rel="canonical"
@@ -121,7 +121,7 @@
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" id="signup" type="submit">
+        <button class="w-100 btn btn-lg btn-primary" id="signup" type="submit" style=" border-radius: 30px; background-color: #000000;">
           Sign up
         </button>
         <br />
@@ -149,7 +149,7 @@
             background-color: #000000;
             color: #fff;
             font-weight: bold;
-            border-radius: 40px;
+            border-radius: 30px;
             cursor: pointer;
           }
 
@@ -170,13 +170,10 @@
     } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
     import {
       getAuth,
-      createUserWithEmailAndPassword,
-    } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
-    import {
-      getAuth,
       GoogleAuthProvider,
       signInWithRedirect,
       getRedirectResult,
+      createUserWithEmailAndPassword
     } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -201,7 +198,7 @@
     googleId.addEventListener("click", (e) => {
       e.preventDefault();
       signInWithRedirect(auth, provider);
-      
+
       getRedirectResult(auth)
         .then((result) => {
           // This gives you a Google Access Token. You can use it to access Google APIs.
