@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Note from "../components/Note";
 import CreateArea from "../components/CreateArea";
 
-// import Signup from "../pages/Signup";
+//import Signup from "../pages/Signup";
 
 function Home() {
   const [notes, setNotes] = useState([]);

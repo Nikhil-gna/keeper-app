@@ -74,6 +74,13 @@
 
           // The signed-in user info.
           const user = result.user;
+          
+          //redirect to /home 
+
+          
+      
+          alert('user signed in');
+          console.log(user);
           // IdP data available using getAdditionalUserInfo(result)
           // ...
         })
@@ -85,6 +92,7 @@
           const email = error.customData.email;
           // The AuthCredential type that was used.
           const credential = GoogleAuthProvider.credentialFromError(error);
+          alert(errorMessage);
           // ...
         });
     });
@@ -105,6 +113,8 @@
             username: username,
           });
           alert("user created");
+          window.location.href = "/home";
+          console.log(user);
         })
 
         // ...
@@ -117,5 +127,17 @@
           // ..
         });
     });
+    auth.onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in, redirect to home page
+    window.location.href = "/home";
+    console.log('user is signed in');
+  } else {
+    // User is signed out
+    window.location.href = "/";
+    console.log('user is signed out');
+  }
+});
+
   </script>
 </html>

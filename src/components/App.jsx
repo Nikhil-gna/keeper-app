@@ -1,7 +1,8 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Home from "../pages/home";
 import Signup from "../pages/Signup";
-
+// import { useEffect } from "react";
+// import { auth } from "../firebase";
 
 function App(){
   return(
