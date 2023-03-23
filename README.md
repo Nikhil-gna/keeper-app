@@ -1,7 +1,9 @@
 
 # Google Keep Notes Clone with React
   This is a simple clone of Google Keep Notes application built with React.
-# [LiveDemo](https://rryztk.csb.app/)
+# [LiveDemo](https://33q10g-3000.csb.app/) v-1.1
+# [LiveDemo](https://rryztk.csb.app/) v-1
+    
 # Features
 * Create notes with title and content
 * Delete notes
